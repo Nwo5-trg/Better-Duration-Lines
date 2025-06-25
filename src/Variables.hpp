@@ -18,6 +18,7 @@ namespace Variables {
 
     inline float lineThickness;
     inline float lineOpacity;
+    inline float zoomClamp;
 
     inline cocos2d::ccColor4F lineColor;
     inline cocos2d::ccColor4F pulseColor1;

@@ -19,6 +19,7 @@ void Variables::updateSettings() { // kinda randomly sorted but its an organised
 
     lineThickness = mod->getSettingValue<double>("line-thickness");
     lineOpacity = mod->getSettingValue<double>("line-opacity");
+    zoomClamp = mod->getSettingValue<double>("zoom-clamp");
 
     lineColor = getColor(mod, "line-color");
     pulseColor1 = getColor(mod, "pulse-color-one");

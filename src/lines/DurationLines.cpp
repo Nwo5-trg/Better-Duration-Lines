@@ -17,7 +17,7 @@ void updateIndicators() {
     float zoom = batchLayer->getScale();
     float currentLayer = editor->m_currentLayer;
 
-    Variables::zoom = Variables::scaleWithZoom ? zoom : 1.0f;
+    Variables::zoom = Variables::scaleWithZoom ? std::min(Variables::zoomClamp, zoom) : 1.0f;
     Variables::halfLineThickness = (Variables::lineThickness / 2) / Variables::zoom;
 
     auto winSize = CCDirector::get()->getWinSize();
