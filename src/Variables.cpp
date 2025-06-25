@@ -6,7 +6,6 @@ using namespace Variables;
 
 ccColor4F getColor(Mod* mod, const std::string& settingName) {
     auto col = ccc4FFromccc3B(mod->getSettingValue<ccColor3B>(settingName));
-    col.a = lineOpacity;
     return col;
 }
 

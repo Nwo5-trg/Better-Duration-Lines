@@ -11,16 +11,16 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
     auto type = Variables::mode == DurationMode::Max ? maxTriggerTypeMap.at(id) : triggerTypeMap.at(id);
     switch (type) {
         case DurationTriggerType::Generic: {
-            drawDurationLine(objPos, getLineDistance(objPos.x, duration), getTriggerCol(id));
+            drawDurationLine(objPos, getLineDistance(objPos.x, duration), getTriggerCol(id, false));
             break;
         }
         case DurationTriggerType::Pulse: { // could i save like 3 additions or smth, yes, is it worth it, prolly ont
             float fade = getLineDistance(objPos.x, obj->m_fadeInDuration);
             float hold = getLineDistance(objPos.x + fade, obj->m_holdDuration);
             float out = getLineDistance(objPos.x + fade + hold, obj->m_fadeOutDuration);
-            drawDurationLine(objPos, fade, Variables::pulseColor1);
-            drawDurationLine({objPos.x + fade, objPos.y}, hold, Variables::pulseColor2);
-            drawDurationLine({objPos.x + fade + hold, objPos.y}, out, Variables::pulseColor3);
+            drawDurationLine({objPos.x + fade + hold, objPos.y}, out, getColWithAlpha(Variables::pulseColor3, true)); // flipped cuz it fixes a bug im too lazy to fix otherwise
+            drawDurationLine({objPos.x + fade, objPos.y}, hold, getColWithAlpha(Variables::pulseColor2, true));
+            drawDurationLine(objPos, fade, getColWithAlpha(Variables::pulseColor1, true));
             break;
         }
         case DurationTriggerType::Alpha: {
@@ -36,8 +36,8 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
                 float segment = getLineDistance(lastSegmentStart, segmentDuration);
                 ccColor4F col = {1.0f, 1.0f, 1.0f, alpha};
                 if (Variables::chroma) {
-                    col = getTriggerCol(id);
-                    col.a = alpha;
+                    col = getTriggerCol(id, true);
+                    col.a *= alpha;
                 }
                 drawDurationLine({lastSegmentStart, objPos.y}, segment, col);
 
@@ -56,8 +56,8 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
                 float time = (float)i / (Variables::gradientsSteps - 1); 
                 auto col = interpolateColor(start, end, time);
                 if (Variables::chromaOverride) {
-                    auto triggerCol = getTriggerCol(id);
-                    triggerCol.a = col.a;
+                    auto triggerCol = getTriggerCol(id, true);
+                    triggerCol.a *= col.a;
                     col = triggerCol;
                 }
 
@@ -73,7 +73,7 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
             if (timer->m_stopTimeEnabled) {
                 float timeMod = timer->m_timeMod == 0 ? 0.001f : timer->m_timeMod;
                 float time = fabs(timer->m_startTime - timer->m_targetTime) / timeMod;
-                drawDurationLine(objPos, getLineDistance(objPos.x, time), getTriggerCol(id));
+                drawDurationLine(objPos, getLineDistance(objPos.x, time), getTriggerCol(id, false));
             }
             break;
         }
@@ -92,9 +92,9 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
             fade = getLineDistance(objPos.x, fade);
             soundDuration = getLineDistance(objPos.x + fade, soundDuration);
             out = getLineDistance(objPos.x + fade + soundDuration, out);
-            drawDurationLine(objPos, fade, Variables::sfxColor1);
-            drawDurationLine({objPos.x + fade, objPos.y}, soundDuration, Variables::sfxColor2);
-            drawDurationLine({objPos.x + fade + soundDuration, objPos.y}, out, Variables::sfxColor3);
+            drawDurationLine({objPos.x + fade + soundDuration, objPos.y}, out, getColWithAlpha(Variables::sfxColor3, true));
+            drawDurationLine({objPos.x + fade, objPos.y}, soundDuration, getColWithAlpha(Variables::sfxColor2, true));
+            drawDurationLine(objPos, fade, getColWithAlpha(Variables::sfxColor1, true));
             break;
         }
     }

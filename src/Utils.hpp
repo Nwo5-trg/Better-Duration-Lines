@@ -74,7 +74,8 @@ inline const std::unordered_map<Speed, float> speedEnumMap = {
     {Speed::Slow, 251.16f}, {Speed::Normal, 311.58f}, {Speed::Fast, 387.42f}, {Speed::Faster, 468.0f}, {Speed::Fastest, 576.0f}
 };
 
-cocos2d::ccColor4F getTriggerCol(int id);
+cocos2d::ccColor4F getTriggerCol(int id, bool override);
+cocos2d::ccColor4F getColWithAlpha(cocos2d::ccColor4F col, bool override);
 
 float getLineDistance(float start, float duration);
 float getStartOpacity(float alphaTriggerX, int group);

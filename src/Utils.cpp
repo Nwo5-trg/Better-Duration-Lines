@@ -3,7 +3,7 @@
 
 using namespace geode::prelude;
 
-ccColor4F getTriggerCol(int id) {
+ccColor4F getTriggerCol(int id, bool override) {
     ccColor4F col = {};
     
     if (Variables::chroma && Variables::durationDrawChromaNode) {
@@ -13,7 +13,12 @@ ccColor4F getTriggerCol(int id) {
     else if (colorMap.contains(id)) col = colorMap.at(id);
     else col = {1.0f, 1.0f, 1.0f, 1.0f};
 
-    col.a = Variables::lineOpacity;
+    col.a = Variables::currentLayerMultiplier * (override ? 1.0f : Variables::lineOpacity);
+    return col;
+}
+
+ccColor4F getColWithAlpha(ccColor4F col, bool override) {
+    col.a *= Variables::currentLayerMultiplier * (override ? 1.0f : Variables::lineOpacity);
     return col;
 }
 

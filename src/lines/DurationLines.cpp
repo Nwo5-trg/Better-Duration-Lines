@@ -15,6 +15,7 @@ void updateIndicators() {
     auto batchLayer = editor->m_objectLayer;
     auto batchLayerPos = editor->m_objectLayer->getPosition();
     float zoom = batchLayer->getScale();
+    float currentLayer = editor->m_currentLayer;
 
     Variables::zoom = Variables::scaleWithZoom ? zoom : 1.0f;
     Variables::halfLineThickness = (Variables::lineThickness / 2) / Variables::zoom;
@@ -40,13 +41,17 @@ void updateIndicators() {
         int id = obj->m_objectID;
         float duration = obj->m_duration;
         if (!maxTriggerTypeMap.contains(id) || Variables::triggerBlacklist.contains(id)) continue;
-        if (maxTriggerTypeMap.contains(id) && maxTriggerTypeMap.at(id) == DurationTriggerType::Generic && obj->m_duration == 0) continue;
-        if (duration < 10.0f) {
-            float cullDistance = winSize.width + duration * 300; // cuz getting the distance just for culling is kinda dumb this is a *rough* estimate
-            cullDistance *= cullDistance;
-            if (ccpDistanceSQ(centerPos, obj->getPosition()) > cullDistance / zoom) continue;
+        if (maxTriggerTypeMap.contains(id) && maxTriggerTypeMap.at(id) == DurationTriggerType::Generic) {
+            if (obj->m_duration == 0) continue;
+            if (duration < 10.0f) {
+                float cullDistance = winSize.width + duration * 350; // cuz getting the distance just for culling is kinda dumb this is a *rough* estimate
+                cullDistance *= cullDistance;
+                if (ccpDistanceSQ(centerPos, obj->getPosition()) > cullDistance / zoom) continue;
+            }
         }
 
+        Variables::currentLayerMultiplier = 1.0f;
+        if (currentLayer != -1) Variables::currentLayerMultiplier = (obj->m_editorLayer == currentLayer) || (obj->m_editorLayer2 == currentLayer) ? 1.0f : 0.5f;
         drawDurationLineForTrigger(obj);
     }
 };

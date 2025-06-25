@@ -8,6 +8,7 @@ namespace Variables {
 
     inline float zoom;
     inline float halfLineThickness;
+    inline float currentLayerMultiplier;
     inline std::vector<std::pair<float, float>> speeds;
 
     inline bool disableMod;
