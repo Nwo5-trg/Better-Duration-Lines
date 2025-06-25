@@ -1,0 +1,131 @@
+{
+	"geode": "4.5.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "nwo5.better_duration_lines",
+	"name": "Better Duration Lines",
+	"version": "v1.0.0",
+	"developer": "Nwo5",
+	"tags": ["utility", "enhancement", "editor", "offline"],
+	"links": {"source": "https://github.com/Nwo5-trg/Better-Duration-Lines"},
+	"description": "arrow triggers can go die in a hole",
+	"settings": {
+		"behaviour-title": {
+			"type": "title",
+			"name": "General"
+		},
+		"mode": {
+			"type": "string",
+			"name": "Type",
+			"description": "(least intuitive naming award goes to:) max means everything is enabled, full is colored indicators, and pulse and sfx visualizations, light is non colored indicators and pulse and sfx visualizations",
+			"default": "Max",
+			"one-of": ["Max", "Full", "Light"]
+		},
+		"disable-mod": {
+			"type": "bool",
+			"name": "Disable Mod",
+			"default": false
+		},
+		"line-thickness": {
+			"type": "float",
+			"name": "Line Thickness",
+			"default": 0.5,
+			"min": 0,
+			"max": 10
+		},
+		"line-opacity": {
+			"type": "float",
+			"name": "Line Opacity",
+			"default": 1.0,
+			"min": 0,
+			"max": 1
+		},
+		"gradients-steps": {
+			"type": "int",
+			"name": "Gradients Steps",
+			"description": "how many segments make up alpha trigger opacity previews or color trigger color previews",
+			"default": 20,
+			"min": 5,
+			"max": 250
+		},
+		"scale-with-zoom": {
+			"type": "bool",
+			"name": "Scale With Zoom",
+			"default": true
+		},
+		"trigger-blacklist": {
+			"type": "string",
+			"name": "Trigger Blacklist",
+			"description": "you can input more trigger ids like, '1,2,3,4,5'",
+			"default": "",
+			"filter": "1234567890,"
+		},
+		"visuals-title": {
+			"type": "title",
+			"name": "Colors"
+		},
+		"line-color": {
+			"type": "rgb",
+			"name": "Line Color",
+			"default": [255, 255, 255]
+		},
+		"pulse-color-one": {
+			"type": "rgb",
+			"name": "Pulse Color 1",
+			"default": [255, 0, 0]
+		},
+		"pulse-color-two": {
+			"type": "rgb",
+			"name": "Pulse Color 2",
+			"default": [255, 255, 0]
+		},
+		"pulse-color-three": {
+			"type": "rgb",
+			"name": "Pulse Color 3",
+			"default": [175, 175, 255]
+		},
+		"sfx-color-one": {
+			"type": "rgb",
+			"name": "Sfx Color 1",
+			"default": [255, 175, 175]
+		},
+		"sfx-color-two": {
+			"type": "rgb",
+			"name": "Sfx Color 2",
+			"default": [255, 255, 175]
+		},
+		"sfx-color-three": {
+			"type": "rgb",
+			"name": "Sfx Color 3",
+			"default": [175, 175, 255]
+		},
+		"silly-title": {
+			"type": "title",
+			"name": "Silly :333"
+		},
+		"chroma": {
+			"type": "bool",
+			"name": "Chroma",
+			"description": "ooooo gay rgbtq lights :3c",
+			"default": false
+		},
+		"chroma-override": {
+			"type": "bool",
+			"name": "Chroma Override",
+			"description": "the gay agenda overpowers all",
+			"default": false
+		},
+		"sayo-device-sensitivity": {
+			"type": "float",
+			"name": "Sayo Device Sensitivity",
+			"description": "new hardest acu 100% cbf 240hz sayo solid wave trail uldm jump from time machine first victor on the iss",
+			"default": 0.25,
+			"min": 0.05,
+			"max": 5
+		}
+	}
+}
