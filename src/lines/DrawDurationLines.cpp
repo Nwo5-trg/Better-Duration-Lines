@@ -9,6 +9,7 @@ void drawDurationLineForTrigger(EffectGameObject* obj) {
     float duration = obj->m_duration;
     auto objPos = obj->getPosition();
     auto type = Variables::mode == DurationMode::Max ? maxTriggerTypeMap.at(id) : triggerTypeMap.at(id);
+    log::error("attempting to draw duration line for {}, {} duration, {}, type", id, duration, static_cast<int>(type));
     switch (type) {
         case DurationTriggerType::Generic: {
             drawDurationLine(objPos, getLineDistance(objPos.x, duration), getTriggerCol(id, false));
@@ -104,6 +105,7 @@ void drawDurationLine(CCPoint pos, float distance, const ccColor4F& col) {
     float startX = pos.x + Variables::halfLineThickness;
     float endX = (pos.x + distance) - Variables::halfLineThickness;
     Variables::durationDraw->drawSegment({startX, pos.y}, {endX, pos.y}, Variables::halfLineThickness * 2, col);
+    log::error("duration segment drawn, {} alpha, {}, distance, {}. pos", col.a, distance, pos);
 }
 
 // float rad = rotation * 0.017453;

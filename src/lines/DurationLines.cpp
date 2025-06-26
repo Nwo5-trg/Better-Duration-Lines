@@ -54,4 +54,6 @@ void updateIndicators() {
         if (currentLayer != -1) Variables::currentLayerMultiplier = (obj->m_editorLayer == currentLayer) || (obj->m_editorLayer2 == currentLayer) ? 1.0f : 0.5f;
         drawDurationLineForTrigger(obj);
     }
+    log::error("loop ran, {} objects", objs->count());
+    log::error("--------------------------------------------------");
 };

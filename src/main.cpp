@@ -14,7 +14,7 @@ class $modify(LevelEditorLayer) {
 
         Variables::updateSettings();
 
-        GameManager::sharedState()->setGameVariable("0058", false); // hide default 
+        GameManager::sharedState()->setGameVariable("0058", Variables::disableMod); // hide default 
 
         auto layer = CCLayer::create();
         layer->setPosition(0.0f, 0.0f);

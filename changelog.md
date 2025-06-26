@@ -1,3 +1,6 @@
+## v1.1.2
+- **Fixed** dont force hide default lines if mod is disabled
+
 ## v1.1.1
 - **Added** zoom clamp
 - **Added** logo (maybe temp cuz its bad but wtv im bad at logos but this project isnt so unserious to the point where i make a sh*tpost logo)
