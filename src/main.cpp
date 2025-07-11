@@ -25,7 +25,6 @@ class $modify(LevelEditorLayer) {
         auto draw = CCDrawNode::create();
         draw->setPosition(0.0f, 0.0f);
         draw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
-        draw->m_uBufferCapacity = 65536;
         layer->addChild(draw);
         Variables::durationDraw = draw;
 
